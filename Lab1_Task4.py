@@ -13,7 +13,6 @@ def maxweight(W, n, w):
                 val = matrix[j - w[i]][i - 1] + w[i]
                 if matrix[j][i] < val:
                     matrix[j][i] = val
-                    #print(matrix[j][i], ' ', j, ' ', i)
     return matrix[-1][-1]
 
 
