@@ -2,30 +2,36 @@ import argparse
 
 
 def check(formula):
-    for i in range(len(formula)+1):
-        if (formula == ''):
+    if (formula):
+        if (formula[0] == "+" or formula[0] == "-" or formula[0] == "0" and formula[1].isnumeric()):
+            # First place operation
             error()
-            break
-        elif (len(formula) == i):
-            solving(formula)
-            break
-        elif (formula[i] == "*" or formula[i] == "/"):
+        elif (formula[len(formula) - 1] == "+" or formula[len(formula) - 1] == "-"):
+            # Last place operation
             error()
-            break
-        elif (formula[0] == "+" or formula[0] == "-"):
-            error()
-            break
-        elif (formula[i] == "+" or formula[i] == "-"):
-            if (formula[i+1] == "+" or formula[i+1] == "-"):
-                error()
-                break
-        elif (formula[i] == "0"):
-            if (formula[i+1].isnumeric()):
-                error()
-                break
-        elif (formula[i].isdigit() == 0):
-            error()
-            break
+        else:
+            for i in range(len(formula) + 1):
+                if (len(formula) == i):
+                    solving(formula)
+                    break
+                elif (formula[len(formula) - 1 - i] != "+" and formula[len(formula) - 1 - i] != "-"
+                    and formula[len(formula) - 1 - i].isdigit() == 0):
+                    #Using not included symbols
+                    error()
+                    break
+                elif ((formula[len(formula) - 1 - i] == "+" or formula[len(formula) - 1 - i] == "-")
+                      and (formula[len(formula) - 2 - i] == "+" or formula[len(formula) - 2 - i] == "-")):
+                        #Reusing operations
+                    error()
+                    break
+                elif ((formula[len(formula) - 2 - i] =="+" or formula[len(formula) - 2 - i] == "-")
+                    and formula[len(formula) - 1 - i] == '0' and formula[len(formula) - i].isnumeric()):
+                    #0 on first place of number
+                    error()
+                    break
+    else:
+        error()
+        #If line is empty
 
 
 def solving(formula):
@@ -37,6 +43,6 @@ def error():
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("formula", type=str)
+parser.add_argument("formula", nargs="?", type=str)
 args = parser.parse_args()
 check(args.formula)
