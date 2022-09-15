@@ -2,31 +2,26 @@ import argparse
 
 
 def check(formula):
-    str = formula
-    for i in range(len(formula) + 1):
-        if (len(formula) == 0):
-            solving(str)
+    for i in range(len(formula)+1):
+        if (len(formula) == i):
+            solving(formula)
             break
-        elif formula[-1] == "+" or formula[-1] == "-" or formula[-1] == "*" or formula[-1] == "/":
+        elif (formula[0] == "+" or formula[0] == "-" or formula[0] == "*" or formula[0] == "/"):
             error()
             break
-        elif formula[0] == "/":
-            if formula[1] == "0":
+        elif (formula[i] == "+" or formula[i] == "-" or formula[i] == "*" or formula[i] == "/"):
+            if (formula[i+1] == "+" or formula[i+1] == "-" or formula[i+1] == "*" or formula[i+1] == "/"):
                 error()
                 break
-            else:
-                formula = formula[1:]
-        elif (formula[0] == "+" or formula[0] == "-" or formula[0] == "*" or formula[0] == "/"):
-            if (formula[1] == "+" or formula[1] == "-" or formula[1] == "*" or formula[1] == "/"):
+        elif (formula[i] == "/"):
+            if (formula[i+1] == '0'):
                 error()
                 break
-            else:
-                formula = formula[1:]
-
-        elif (formula[0].isdigit()):
-            formula = formula[1:]
-        else:
-
+        elif (formula[i] == "0"):
+            if (formula[i+1].isnumeric()):
+                error()
+                break
+        elif (formula[i].isdigit() == 0):
             error()
             break
 
