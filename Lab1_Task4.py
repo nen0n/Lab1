@@ -2,18 +2,6 @@ import argparse
 
 
 def maxweight(W, n, w):
-    '''w = [0] + w
-    capacity = W + 1
-    matrix = [[0 for i in range(n+1)] for i in range(capacity)]
-
-    for i in range(0, n+1):
-        for j in range(0, capacity):
-            matrix[j][i] = matrix[j][i - 1]
-            if w[i] <= j:
-                val = matrix[j - w[i]][i - 1] + w[i]
-                if matrix[j][i] < val:
-                    matrix[j][i] = val
-    return matrix[-1][-1]'''
     w.sort()
     max_value = 0
     value = 0
