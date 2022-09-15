@@ -3,18 +3,20 @@ import argparse
 
 def check(formula):
     for i in range(len(formula)+1):
-        if (len(formula) == i):
-            solving(formula)
-            break
-        elif (formula[0] == "+" or formula[0] == "-" or formula[0] == "*" or formula[0] == "/"):
+        if (len(formula) == 0):
             error()
             break
-        elif (formula[i] == "+" or formula[i] == "-" or formula[i] == "*" or formula[i] == "/"):
-            if (formula[i+1] == "+" or formula[i+1] == "-" or formula[i+1] == "*" or formula[i+1] == "/"):
-                error()
-                break
-        elif (formula[i] == "/"):
-            if (formula[i+1] == '0'):
+        elif (len(formula) == i):
+            solving(formula)
+            break
+        elif (formula[i] == "*" or formula[i] == "/"):
+            error()
+            break
+        elif (formula[0] == "+" or formula[0] == "-"):
+            error()
+            break
+        elif (formula[i] == "+" or formula[i] == "-"):
+            if (formula[i+1] == "+" or formula[i+1] == "-"):
                 error()
                 break
         elif (formula[i] == "0"):
