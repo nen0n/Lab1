@@ -33,6 +33,7 @@ def solving(formula):
 def error():
     print("False, None")
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument("formula", type=str)
 args = parser.parse_args()
