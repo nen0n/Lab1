@@ -3,7 +3,7 @@ import argparse
 
 def check(formula):
     for i in range(len(formula)+1):
-        if (len(formula) == 0):
+        if (formula == ''):
             error()
             break
         elif (len(formula) == i):
