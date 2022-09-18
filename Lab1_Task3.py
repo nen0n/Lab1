@@ -12,6 +12,7 @@ def check(formula):
         else:
             for i in range(len(formula) + 1):
                 if (len(formula) == i):
+                    #Printing Result
                     solving(formula)
                     break
                 elif (formula[len(formula) - 1 - i] != "+" and formula[len(formula) - 1 - i] != "-"
