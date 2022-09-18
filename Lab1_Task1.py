@@ -9,8 +9,8 @@ args = parser.parse_args()
 if (args.Operator != "+" and args.Operator != "-" and args.Operator != "*" and args.Operator != "/"):
     print("Not math symbol")
 elif (args.Operator == "+" or args.Operator == "-" or args.Operator == "*"):
-    print("Result is:", eval(str(args.Number1) + args.Operator + str(args.Number2)))
+    print("Result is:", eval(str(args.Number_1) + args.Operator + str(args.Number_2)))
 elif (args.Operator == "/" and args.Number2 == "0"):
     print("Division by zero")
 else:
-    print(eval(str(args.Number1) + args.Operator + str(args.Number2)))
+    print(eval(str(args.Number_1) + args.Operator + str(args.Number_2)))
