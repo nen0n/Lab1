@@ -22,7 +22,7 @@ def check(formula):
                     break
                 elif ((formula[len(formula) - 1 - i] == "+" or formula[len(formula) - 1 - i] == "-")
                       and (formula[len(formula) - 2 - i] == "+" or formula[len(formula) - 2 - i] == "-")):
-                        #Reusing operations
+                    #Reusing operations
                     error()
                     break
                 elif ((formula[len(formula) - 2 - i] =="+" or formula[len(formula) - 2 - i] == "-")
