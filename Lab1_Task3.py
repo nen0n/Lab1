@@ -3,38 +3,33 @@ import argparse
 
 def check(formula):
     if (formula):
-        if (formula[0] == "+" or formula[0] == "-" or formula[0] == "0" and formula[1].isnumeric()):
-            # First place operation
-            error()
-        elif (formula[len(formula) - 1] == "+" or formula[len(formula) - 1] == "-"):
-            # Last place operation
+        if check_error(formula, 0): #check first and last digit
             error()
         else:
-            for i in range(len(formula) + 1):
-                if (len(formula) == i):
+            for i in range(1, len(formula) + 1):
+                if len(formula) == i:
                     #Printing Result
                     solving(formula)
                     break
-                elif (formula[len(formula) - 1 - i] != "+" and formula[len(formula) - 1 - i] != "-"
-                    and formula[len(formula) - 1 - i].isdigit() == 0):
-                    #Using not included symbols
-                    error()
-                    break
-                elif ((formula[len(formula) - 1 - i] == "+" or formula[len(formula) - 1 - i] == "-")
-                      and (formula[len(formula) - 2 - i] == "+" or formula[len(formula) - 2 - i] == "-")):
-                    #Reusing operations
-                    error()
-                    break
-                elif ((formula[len(formula) - 2 - i] =="+" or formula[len(formula) - 2 - i] == "-")
-                    and formula[len(formula) - 1 - i] == '0' and formula[len(formula) - i].isnumeric()):
-                    #0 on first place of number
+                elif check_error(formula, len(formula) - i):
                     error()
                     break
     else:
         error()
         #If line is empty
+def check_error(args, i):
+    return args[i] not in ("+", "-") and args[i].isdigit() == 0 or \
+           args[i - 1] in ("+", "-") and args[i] == '0' and args[i].isnumeric() or \
+           args[i] in ("+", "-") and args[i-1] in ("+", "-") or \
+           args[0] in ("+", "-") or args[0] == '0' and args[1].isnumeric() or \
+           args[-1] in ("+", "-")
 
 
+        # Not included symbol
+        # Zero on first position of number
+        # Reusing operators
+        # First symbol not + - or 0
+        # Last symbol not + -
 def solving(formula):
     print("True,", eval(formula))
 

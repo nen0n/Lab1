@@ -9,12 +9,12 @@ args = parser.parse_args()
 
 def func(oper, *args) -> str:
     try:
-        fun1 = getattr(operator, oper)
-        return fun1(*args)
+        func1 = getattr(operator, oper)
+        return func1(*args)
     except Exception:
         try:
-            fun2 = getattr(math, oper)
-            return fun2(*args)
+            func2 = getattr(math, oper)
+            return func2(*args)
         except Exception:
             return "Error"
 
