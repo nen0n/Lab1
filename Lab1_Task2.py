@@ -1,10 +1,21 @@
 import argparse
 import operator
-
+import math
 
 parser = argparse.ArgumentParser()
 parser.add_argument("Operator", type=str)
-parser.add_argument("Number1", type=int)
-parser.add_argument("Number2", type=int)
+parser.add_argument("Number", type=int, nargs="+")
 args = parser.parse_args()
-print(eval(str('operator.' + args.Operator + '(' + str(args.Number1) + ', '+str(args.Number2)+')')))
+
+def func(oper, *args) -> str:
+    try:
+        fun1 = getattr(operator, oper)
+        return fun1(*args)
+    except Exception:
+        try:
+            fun2 = getattr(math, oper)
+            return fun2(*args)
+        except Exception:
+            return "Error"
+
+print(func(args.Operator, *args.Number))
